@@ -105,6 +105,8 @@ public class Gmail extends Email {
             if(!Date.before(start) && !date.after(end)){
                 count++;
             }
+        }
+        return count;
     }
 
     public int getInboxSize(){
