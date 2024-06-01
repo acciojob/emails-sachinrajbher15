@@ -25,15 +25,15 @@ public class Email {
         // 3. It contains at least one lowercase letter
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
-        
-        boolean hasEightChar = false;
+
+        boolean hasEightchar = false;
         boolean hasUppercase = false;
         boolean hasLowercase = false;
         boolean hasDigit = false;
-        boolean hasSpecialChar =false;
+        boolean hasSpecialchar =false;
 
         if (newPassword.length() >= 8){
-            hasEightChar = true;
+            hasEightchar = true;
         }
 
         for (char c : newPassword.toCharArray()){
@@ -44,11 +44,11 @@ public class Email {
             } else if (Character.isDigit(c)) {
                 hasDigit = true;
             } else {
-                hasSpecialChar = true;
+                hasSpecialchar = true;
             }
         }
 
-        if(oldPassword.equals(getPassword()) && hasEightChar && hasUppercase && hasLowercase && hasDigit && hasSpecialChar){
+        if(oldPassword.equals(getPassword()) && hasEightchar && hasUppercase && hasLowercase && hasDigit && hasSpecialchar){
             this.password=newPassword;
             return;
         }
