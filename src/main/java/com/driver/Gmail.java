@@ -1,8 +1,7 @@
 package com.driver;
-
 import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.*;
 public class Gmail extends Email {
 
     int inboxCapacity; //maximum number of mails inbox can store
@@ -60,17 +59,17 @@ public class Gmail extends Email {
         // It is guaranteed that:
         // 1. Each mail in the inbox is distinct.
         // 2. The mails are received in non-decreasing order. This means that the date of a new mail is greater than equal to the dates of mails received already.
-        if(inox.size() >= inboxCapacity){
+        if(inbox.size() >= inboxCapacity){
             trash.add(inbox.removeFirst());
         }
-        inbox.add(new mail(date,sender,message));
+        inbox.add(new Mail(date,sender,message));
     }
 
     public void deleteMail(String message){
         // Each message is distinct
         // If the given message is found in any mail in the inbox, move the mail to trash, else do nothing
-        for(Mail mail:inbox){
-            if(mail.getMessage().equals9message){
+        for(Mail mail :inbox){
+            if(mail.getMessage().equals(message)){
                 trash.add(mail);
                 inbox.remove(mail);
                 return;
@@ -96,10 +95,12 @@ public class Gmail extends Email {
         return inbox.getFirst().getMessage();
     }
 
+
     public int findMailsBetweenDates(Date start, Date end){
         //find number of mails in the inbox which are received between given dates
         //It is guaranteed that start date <= end date
         int count = 0;
+
         for(Mail mail:inbox){
             Date date = mail.getDate();
             if(!Date.before(start) && !date.after(end)){
@@ -128,4 +129,6 @@ public class Gmail extends Email {
         // Return the maximum number of mails that can be stored in the inbox
         return inboxCapacity;
     }
+
+
 }
