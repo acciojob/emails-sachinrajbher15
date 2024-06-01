@@ -5,6 +5,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Workspace extends Gmail{
 
@@ -12,13 +13,14 @@ public class Workspace extends Gmail{
 
     public Workspace(String emailId) {
         // The inboxCapacity is equal to the maximum value an integer can store.
-        super(emailId,Interger.MAX_VALUE);
-        this.calendar = new ArrayList<>();
+        super(emailId,Integer.MAX_VALUE);
+        this.calendar=new ArrayList<>();
     }
 
     public void addMeeting(Meeting meeting){
         //add the meeting to calendar
         calendar.add(meeting);
+
     }
 
     public int findMaxMeetings(){
@@ -29,15 +31,16 @@ public class Workspace extends Gmail{
         if(calendar.isEmpty()){
             return 0;
         }
-        Collenctions.sort(calendar, Comparator.comparing(Meeting::getEndTime));
-        int maxMeetings = 1;
-        LocalTime lasEndTime=calendar.get(0).getEndTime();
-        for(int i=1; i<calendar.size(); i++){
+        Collections.sort(calendar, Comparator.comparing(Meeting::getEndTime));
+
+        int maxMeatings = 1;
+        LocalTime lastEndTime=calendar.get(0).getEndTime();
+        for(int i=1;i<calendar.size();i++){
             if(calendar.get(i).getStartTime().isAfter(lastEndTime)){
-                maxMeetings++;
-                lastEndTime = calendar.get(i).getEndTime();
+                maxMeatings++;
+                lastEndTime=calendar.get(i).getEndTime();
             }
         }
-        return maxMeetings;
-    }    
+        return maxMeatings;
+    }
 }
